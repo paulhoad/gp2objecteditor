@@ -30,7 +30,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 	     wsprintf(buffer,"p[%d] %d %d %d",i,pointData[i].x,pointData[i].y,pointData[i].z);
 	   }
 	   HTREEITEM ptItem = tree->insertInfoNode(pts,buffer,TO_ID(IDB_POINT));
-	   tree->m_CarTree.SetItemData(ptItem,(DWORD)&pointData[i]);
+	   tree->m_CarTree.SetItemData(ptItem,(DWORD_PTR)&pointData[i]);
 	   pointData[i].node = ptItem;
 	   pointData[i].idx = i;
 	   pointData[i].object = this;
@@ -43,7 +43,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 	  
 	   sprintf(buffer,"v[%d] %d -> %d =%d cm",i+1,vertexData[i].from,vertexData[i].to,(int)vertexData[i].LengthCM());
 	   HTREEITEM verItem = tree->insertInfoNode(vertex,buffer,TO_ID(IDB_VERTICIES));
-	   tree->m_CarTree.SetItemData(verItem,(DWORD)&vertexData[i]);
+	   tree->m_CarTree.SetItemData(verItem,(DWORD_PTR)&vertexData[i]);
 	   vertexData[i].node = verItem;
 	   vertexData[i].idx = i;
 	   vertexData[i].object = this;
@@ -66,7 +66,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 	   scaleData[i].node = scaleItem;
 	   scaleData[i].idx = i;
 	   scaleData[i].object = this;
-	   tree->m_CarTree.SetItemData(scaleItem,(DWORD)&scaleData[i]);
+	   tree->m_CarTree.SetItemData(scaleItem,(DWORD_PTR)&scaleData[i]);
 	}
 
 	wsprintf(buffer,"TextureData %d",textureSize);
@@ -93,7 +93,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 		HTREEITEM textureItem = textureData[i].LoadTree(tree,textItem);
 		textureData[i].node = textItem;
 		textureData[i].idx = i;
-		tree->m_CarTree.SetItemData(textItem,(DWORD)&textureData[i]);
+		tree->m_CarTree.SetItemData(textItem,(DWORD_PTR)&textureData[i]);
 	}
 
 
@@ -105,7 +105,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 	  
 	   wsprintf(buffer,"u[%d] %d ",i,unkData[i].data);
 	   HTREEITEM verItem = tree->insertInfoNode(unkp,buffer,TO_ID(IDB_UNK));
-	   tree->m_CarTree.SetItemData(verItem,(DWORD)&unkData[i]);
+	   tree->m_CarTree.SetItemData(verItem,(DWORD_PTR)&unkData[i]);
 	   unkData[i].node = verItem;
 	   unkData[i].idx = i;
 	   unkData[i].object = this;
@@ -123,7 +123,7 @@ void GPOObject::LoadTree(CCarTree *tree)
 	   unkscaleData[i].node = item;
 	   unkscaleData[i].idx = i;
 	   unkscaleData[i].object = this;
-	   tree->m_CarTree.SetItemData(item,(DWORD)&unkscaleData[i]);
+	   tree->m_CarTree.SetItemData(item,(DWORD_PTR)&unkscaleData[i]);
 	}
 
 	wsprintf(buffer,"JamFiles %d",numberOfJamNames);
@@ -706,7 +706,7 @@ void t_Arg::Open(CCarTree *tree)
 	CDataValue *dlg = new CDataValue();
 
 	dlg->m_DataVal = val;
-	int result = dlg->DoModal();
+	INT_PTR result = dlg->DoModal();
 
 	if (result!=IDCANCEL)
 	{
@@ -965,7 +965,7 @@ void Object3D::AddNewJamFile()
 		  strcpy(fileName,"*.jam");
 		  CFileDialog *fdlg = new CFileDialog(TRUE,"jam",(LPCSTR)&fileName,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,lpszJamFilter);
 	
-	      int result = fdlg->DoModal();
+	      INT_PTR result = fdlg->DoModal();
 
 		  if (result != IDCANCEL)
 		  {

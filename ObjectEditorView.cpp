@@ -331,7 +331,7 @@ void DrawText2D(HDC hdc,CScrollView *scview,GLdouble wx,GLdouble wy,GLdouble wz,
 		int winx = (int)(sx-midx);
 		int winy = (int)(sy-midy);
 		
-		::TextOut(hdc,(int)(midx+winx),(int)(midy-winy),buffer,strlen(buffer));
+		::TextOut(hdc,(int)(midx+winx),(int)(midy-winy),buffer,static_cast<int>(strlen(buffer)));
 		glPopMatrix();
 }
 

@@ -171,7 +171,7 @@ void CCarTree::OnDblclkCartree(NMHDR* pNMHDR, LRESULT* pResult)
 	{
 	 HTREEITEM TreeNode = m_CarTree.GetSelectedItem();
 
-	 DWORD data = m_CarTree.GetItemData(TreeNode);
+	 DWORD_PTR data = m_CarTree.GetItemData(TreeNode);
 	 
 	 Observer *dlg = (Observer*)data;
 	 if (dlg != NULL)
@@ -205,7 +205,7 @@ void CCarTree::OnclkCartree(NMHDR* pNMHDR, LRESULT* pResult)
 	 
 	 if (TreeNode)
 	 {
-	  DWORD data = m_CarTree.GetItemData(TreeNode);
+	  DWORD_PTR data = m_CarTree.GetItemData(TreeNode);
 	 
 	  Observer *dlg = (Observer*)data;
 	  if (dlg != NULL)

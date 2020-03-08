@@ -66,7 +66,7 @@ BOOL CObjectEditorApp::InitInstance()
 #ifdef _AFXDLL
 	Enable3dControls();			// Call this when using MFC in a shared DLL
 #else
-	Enable3dControlsStatic();	// Call this when linking to MFC statically
+	//Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
 	SetRegistryKey("GP2ObjectEditorProject\\ObjectEditor");
@@ -344,7 +344,7 @@ void CObjectEditorApp::OnStartHelp(BOOL reposition)
     typeInfo.fsToolBarFlags |= HHWIN_BUTTON_INDEX;
 	typeInfo.rcWindowPos = rect;
 
-    HtmlHelpFunc( AfxGetMainWnd()->m_hWnd,NULL, HH_SET_WIN_TYPE,(DWORD) (&typeInfo));
+    //HtmlHelpFunc( AfxGetMainWnd()->m_hWnd,NULL, HH_SET_WIN_TYPE,(DWORD) (&typeInfo));
 
 	tempType += TypeName;
 
@@ -376,7 +376,7 @@ void CObjectEditorApp::OnHelpContentString(CString url)
 	prefix += m_chmUrl;
     prefix += "::/";
 	prefix += url;
-	HtmlHelpFunc(AfxGetMainWnd()->m_hWnd,tempType,HH_DISPLAY_TOPIC,(DWORD)(LPCSTR)prefix);
+	//HtmlHelpFunc(AfxGetMainWnd()->m_hWnd,tempType,HH_DISPLAY_TOPIC,(DWORD)(LPCSTR)prefix);
 }
 
 typedef void (*HTMLHELPPROC)(HWND caller,LPCSTR filename,UINT cmd,DWORD dwData);

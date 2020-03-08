@@ -1,10 +1,4 @@
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
 
 #include "stdafx.h"
 
@@ -90,7 +84,7 @@ void Scale::Open(CCarTree *tree)
 	CDataValue *dlg = new CDataValue();
 
 	dlg->m_DataVal = val;
-	int result = dlg->DoModal();
+	INT_PTR result = dlg->DoModal();
 
 	if (result!=IDCANCEL)
 	{
@@ -134,17 +128,17 @@ HTREEITEM TextureCmd::LoadTree(CCarTree *tree,HTREEITEM node)
 	    char msg[256];
 	    wsprintf(msg,"Cmd %x",cmd.getVal());
 		HTREEITEM scaleItem = tree->insertInfoNode(node,msg,TO_ID(IDB_POLYGONS));
-	    tree->m_CarTree.SetItemData(scaleItem,(DWORD)&cmd);
+	    tree->m_CarTree.SetItemData(scaleItem,(DWORD_PTR)&cmd);
 	    for(int j=0;j<numArgs;j++)
 		{	
 			if (Args[j].desc == NULL)
 			{
-			   Args[j].desc = strdup("Unknown");
+			   Args[j].desc = _strdup("Unknown");
 			}
 			wsprintf(msg,"%d -> %s",(short)Args[j].val,Args[j].desc);
 			HTREEITEM scaleItem = tree->insertInfoNode(node,msg,TO_ID(IDB_POLYGONS));
 			Args[j].node = scaleItem;
-			tree->m_CarTree.SetItemData(scaleItem,(DWORD)&Args[j]);
+			tree->m_CarTree.SetItemData(scaleItem,(DWORD_PTR)&Args[j]);
 		}
 		return node;
 }
@@ -186,7 +180,7 @@ void Vertex::Open(CCarTree *tree)
 
 	dlg->m_From = from;
 	dlg->m_To = to;
-	int result = dlg->DoModal();
+	INT_PTR result = dlg->DoModal();
 
 	if (result!=IDCANCEL)
 	{
@@ -272,7 +266,7 @@ void Point3D::Open(CCarTree *tree)
 	//dlg->m_XScale = "s[0]";
 	//dlg->m_YScale = "s[0]";
 
-	int result = dlg->DoModal();
+	INT_PTR result = dlg->DoModal();
 
 	if (result!=IDCANCEL)
 	{
@@ -335,7 +329,7 @@ void DatVal::Open(CCarTree *tree)
 	CDataValue *dlg = new CDataValue();
 
 	dlg->m_DataVal = data;
-	int result = dlg->DoModal();
+	INT_PTR result = dlg->DoModal();
 
 	if (result!=IDCANCEL)
 	{
